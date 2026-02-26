@@ -62,8 +62,10 @@ function renderProducts(filter = 'all') {
     const adCard = document.createElement('div');
     adCard.className = 'card ad-card';
     adCard.style.padding = '0';
+    adCard.style.border = '2px solid var(--accent-blue)';
+    adCard.style.boxShadow = '0 0 20px rgba(0, 210, 255, 0.3)';
     adCard.innerHTML = `
-        <div style="font-size: 0.6rem; color: var(--ad-gold); border: 1px solid var(--ad-gold); padding: 2px 5px; margin: 1rem 0; position: absolute; top: 0; left: 50%; transform: translateX(-50%);">SPONSORED</div>
+        <div style="font-size: 0.6rem; color: #000; background: var(--ad-gold); padding: 4px 10px; font-weight: 800; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-radius: 0 0 8px 8px; z-index: 10;">PREMIUM UNLOCK AREA</div>
         <div id="ad-unit-grid" style="width: 300px; height: 250px; margin: 2rem auto 0; display: flex; align-items: center; justify-content: center;">
             <script type="text/javascript">
                 atOptions = {
@@ -75,6 +77,9 @@ function renderProducts(filter = 'all') {
                 };
             </script>
             <script type="text/javascript" src="https://www.highperformanceformat.com/eda0ed4d49f63991751ea5288787a489/invoke.js"></script>
+        </div>
+        <div style="padding: 1rem; text-align: center; background: rgba(0,210,255,0.05);">
+            <p style="font-size: 0.75rem; color: var(--accent-blue); font-weight: 600;">↑ Support Sponsors to keep Vault Free ↑</p>
         </div>
     `;
     productGrid.appendChild(adCard);
@@ -116,9 +121,11 @@ function startRewardedAd(product) {
 
     adPlayer.innerHTML = `
         <div style="background: ${sponsor.color}; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; color: #fff; text-align: center;">
-            <h1 style="font-size: 3rem; margin-bottom: 1rem;">${sponsor.name}</h1>
-            <p>${sponsor.text}</p>
-            <a href="https://www.effectivegatecpm.com/gb3fs0zcdn?key=b2429b0fcc3d0c547d4df3f997d4f71f" target="_blank" class="btn" style="background: #fff; color: #000; margin-top: 2rem; text-decoration: none; display: inline-block;">Visit Sponsor & Unlock</a>
+            <div style="background: rgba(0,0,0,0.3); padding: 10px 20px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; margin-bottom: 1rem;">SPONSOR MESSAGE</div>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">${sponsor.name}</h1>
+            <p style="font-size: 1.1rem; opacity: 0.9;">${sponsor.text}</p>
+            <a href="https://www.effectivegatecpm.com/gb3fs0zcdn?key=b2429b0fcc3d0c547d4df3f997d4f71f" target="_blank" class="btn btn-pulse" style="background: #fff; color: #000; margin-top: 2rem; text-decoration: none; display: inline-block; padding: 1.2rem 3rem; font-size: 1.1rem; box-shadow: 0 0 20px rgba(255,255,255,0.5);">CLICK TO UNLOCK FILE</a>
+            <p style="margin-top: 1rem; font-size: 0.7rem; opacity: 0.7;">(Clicking helps verify your human status)</p>
         </div>
     `;
 
