@@ -485,3 +485,60 @@ nav a:hover {
         box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
 }
+
+/* Anti-Adblock Overlay */
+.ab-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 99999;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.ab-overlay.active {
+    display: flex;
+}
+
+.ab-content {
+    max-width: 500px;
+    background: #111;
+    border: 1px solid var(--glass-border);
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 0 100px rgba(0, 210, 255, 0.1);
+}
+
+.ab-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.ab-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.ab-text {
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.ab-footer {
+    font-size: 0.8rem;
+    color: var(--accent-blue);
+    opacity: 0.7;
+    margin-top: 2rem;
+}

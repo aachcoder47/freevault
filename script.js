@@ -124,8 +124,8 @@ function startRewardedAd(product) {
             <div style="background: rgba(0,0,0,0.3); padding: 10px 20px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; margin-bottom: 1rem;">SPONSOR MESSAGE</div>
             <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">${sponsor.name}</h1>
             <p style="font-size: 1.1rem; opacity: 0.9;">${sponsor.text}</p>
-            <a href="https://whistlemiddletrains.com/gb3fs0zcdn?key=b2429b0fcc3d0c547d4df3f997d4f71f" target="_blank" class="btn btn-pulse" style="background: #fff; color: #000; margin-top: 2rem; text-decoration: none; display: inline-block; padding: 1.2rem 3rem; font-size: 1.1rem; box-shadow: 0 0 20px rgba(255,255,255,0.5);">CLICK TO UNLOCK FILE</a>
-            <p style="margin-top: 1rem; font-size: 0.7rem; opacity: 0.7;">(Clicking helps verify your human status)</p>
+            <a href="https://whistlemiddletrains.com/gb3fs0zcdn?key=b2429b0fcc3d0c547d4df3f997d4f71f" target="_blank" class="btn btn-pulse" style="background: #fff; color: #000; margin-top: 2rem; text-decoration: none; display: inline-block; padding: 1.2rem 3rem; font-size: 1.1rem; box-shadow: 0 0 20px rgba(255,255,255,0.5);">CONTINUE TO DOWNLOAD (SECURE)</a>
+            <p style="margin-top: 1rem; font-size: 0.7rem; opacity: 0.7;">(Required: Click above to verify human status)</p>
         </div>
     `;
 
@@ -139,11 +139,17 @@ function startRewardedAd(product) {
         if (timeLeft <= 0) {
             clearInterval(countdown);
             adTimer.innerText = 'DONE';
-            closeAdBtn.innerText = 'Close & Claim';
-            closeAdBtn.disabled = true; // Still disabled until they click something or just show reward
-            closeAdBtn.style.display = 'none';
+            closeAdBtn.innerText = 'Human Verified - Claim';
+            closeAdBtn.disabled = false;
+            closeAdBtn.style.opacity = '1';
+            closeAdBtn.style.cursor = 'pointer';
+            closeAdBtn.style.background = 'var(--accent-blue)';
+            closeAdBtn.style.color = '#000';
 
-            showReward(product);
+            closeAdBtn.onclick = () => {
+                showReward(product);
+                closeAdBtn.style.display = 'none';
+            };
         }
     }, 1000);
 }
@@ -215,8 +221,41 @@ function showAdToast() {
     }, 5000);
 }
 
+// Anti-Adblock Detection
+function checkAdBlock() {
+    const adOverlay = document.getElementById('ab-overlay');
+
+    // Check if an ad script successfully loaded
+    // We can check if the global 'atOptions' or 'atOptions' etc is blocked or if a banner container has 0 height
+    setTimeout(() => {
+        const topAd = document.getElementById('top-banner-ad');
+        const sidebarAd = document.querySelector('.sidebar-ad');
+
+        // If the top banner ad zone is empty or has 0 height, adblock is likely active
+        if (topAd && (topAd.offsetHeight < 10 || !topAd.innerHTML.includes('iframe'))) {
+            // Check multiple indicators to avoid false positives
+            const testAd = document.createElement('div');
+            testAd.className = 'adsbox ad-unit banner-ad google-ad';
+            testAd.style.height = '1px';
+            testAd.style.width = '1px';
+            testAd.style.position = 'absolute';
+            testAd.style.top = '-1000px';
+            document.body.appendChild(testAd);
+
+            window.setTimeout(() => {
+                if (testAd.offsetHeight === 0) {
+                    adOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+                testAd.remove();
+            }, 100);
+        }
+    }, 2000);
+}
+
 // Initial Render
 renderProducts();
+checkAdBlock();
 
 // Start Ad Cycle
 setInterval(showAdToast, 8000);
@@ -231,6 +270,7 @@ setInterval(() => {
     ];
     const topBanner = document.getElementById('top-banner-ad');
     if (topBanner) {
-        topBanner.querySelector('p').innerText = banners[Math.floor(Math.random() * banners.length)];
+        const p = topBanner.querySelector('p');
+        if (p) p.innerText = banners[Math.floor(Math.random() * banners.length)];
     }
 }, 4000);
