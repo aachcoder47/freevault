@@ -1,0 +1,9 @@
+[GIVEAWAY ENTRY CONFIRMED]
+
+Thank you for entering the FreeVault $100 Daily Giveaway!
+
+Your entry ID: FV-2026-{{RANDOM_ID}}
+Drawing Time: Every 24 hours at 00:00 UTC.
+
+Winners are notified via the email linked to their sponsor interaction. 
+Good luck!

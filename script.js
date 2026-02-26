@@ -18,6 +18,16 @@ const products = [
         image: "https://images.unsplash.com/photo-1611974715853-2b8ef9a36ceb?q=80&w=800",
         badge: "Method",
         file: "hq_earning_methods.txt"
+    },
+    {
+        id: 3,
+        title: "$100 Cash Giveaway",
+        category: "hot",
+        desc: "Enter for a chance to win $100 in crypto or PayPal. Drawing every 24 hours!",
+        price: "$100",
+        image: "https://images.unsplash.com/photo-1518458084722-67377a126160?q=80&w=800",
+        badge: "🔥 HOT",
+        file: "giveaway_entry.txt"
     }
 ];
 
