@@ -8,6 +8,16 @@ const products = [
         image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800",
         badge: "SaaS",
         file: "My workflow (1).json"
+    },
+    {
+        id: 2,
+        title: "HQ Earning Methods 2026",
+        category: "methods",
+        desc: "Private list of high-earning digital strategies for 2026. Updated weekly.",
+        price: "$49",
+        image: "https://images.unsplash.com/photo-1611974715853-2b8ef9a36ceb?q=80&w=800",
+        badge: "Method",
+        file: "hq_earning_methods.txt"
     }
 ];
 
@@ -36,28 +46,28 @@ function renderProducts(filter = 'all') {
             </div>
         `;
         productGrid.appendChild(card);
-
-        // Inject a real Ad unit after the main product
-        const adCard = document.createElement('div');
-        adCard.className = 'card ad-card';
-        adCard.style.padding = '0'; // Remove padding for the iframe
-        adCard.innerHTML = `
-            <div style="font-size: 0.6rem; color: var(--ad-gold); border: 1px solid var(--ad-gold); padding: 2px 5px; margin: 1rem 0; position: absolute; top: 0; left: 50%; transform: translateX(-50%);">SPONSORED</div>
-            <div id="ad-unit-grid" style="width: 300px; height: 250px; margin: 2rem auto 0; display: flex; align-items: center; justify-content: center;">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : 'eda0ed4d49f63991751ea5288787a489',
-                        'format' : 'iframe',
-                        'height' : 250,
-                        'width' : 300,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="https://www.highperformanceformat.com/eda0ed4d49f63991751ea5288787a489/invoke.js"></script>
-            </div>
-        `;
-        productGrid.appendChild(adCard);
     });
+
+    // Inject a real Ad unit at the end of the grid
+    const adCard = document.createElement('div');
+    adCard.className = 'card ad-card';
+    adCard.style.padding = '0';
+    adCard.innerHTML = `
+        <div style="font-size: 0.6rem; color: var(--ad-gold); border: 1px solid var(--ad-gold); padding: 2px 5px; margin: 1rem 0; position: absolute; top: 0; left: 50%; transform: translateX(-50%);">SPONSORED</div>
+        <div id="ad-unit-grid" style="width: 300px; height: 250px; margin: 2rem auto 0; display: flex; align-items: center; justify-content: center;">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'eda0ed4d49f63991751ea5288787a489',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="https://www.highperformanceformat.com/eda0ed4d49f63991751ea5288787a489/invoke.js"></script>
+        </div>
+    `;
+    productGrid.appendChild(adCard);
 
     // Re-attach event listeners for claim buttons
     document.querySelectorAll('.claim-btn').forEach(btn => {
@@ -98,7 +108,7 @@ function startRewardedAd(product) {
         <div style="background: ${sponsor.color}; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; color: #fff; text-align: center;">
             <h1 style="font-size: 3rem; margin-bottom: 1rem;">${sponsor.name}</h1>
             <p>${sponsor.text}</p>
-            <button class="btn" style="background: #fff; color: #000; margin-top: 2rem;">Visit Website</button>
+            <a href="https://www.effectivegatecpm.com/gb3fs0zcdn?key=b2429b0fcc3d0c547d4df3f997d4f71f" target="_blank" class="btn" style="background: #fff; color: #000; margin-top: 2rem; text-decoration: none; display: inline-block;">Visit Sponsor & Unlock</a>
         </div>
     `;
 
